@@ -96,18 +96,7 @@ jobs:
           cd gki/common
           curl -LSs https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/staging/kernel/setup.sh | bash -s staging
           echo "✅ KernelSU-Next added"
-
-          echo "Clonning susfs4ksu"
-          git clone https://gitlab.com/simonpunk/susfs4ksu/ -b gki-android12-5.10 sus
-          echo "✅ Clonned"
-          echo "Patching susfs4ksu"
-          susfs=sus/kernel_patches
-          cp -r $susfs/fs $(pwd)
-          cp -r $susfs/include $(pwd)
-          cp -r $susfs/50_add_susfs_in_gki-android12-5.10.patch $(pwd)
-          patch -p1 < 50_add_susfs_in_gki-android12-5.10.patch
-          echo "✅ SUSFS patched"
-
+          
       - name: Apply inline patch for module.c and drm_atomic_helper.c
         run: |
           cd gki
